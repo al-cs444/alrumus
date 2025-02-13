@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mau tutor ? </title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .calculator-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            animation: fadeIn 1s ease-out;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .bet {
+            margin-bottom: 15px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            font-size: 14px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .input-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .input-table th, .input-table td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        .input-table th {
+            background-color: #f1f1f1;
+        }
+        .input-table input[type="number"], .input-table input[type="text"] {
+            width: 80%;
+            padding: 6px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 16px;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade {
+            animation: fadeIn 1s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Login Form -->
+<div id="loginForm" class="login-form" style="display: block;">
+    <h2>Login untuk Melanjutkan</h2>
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button onclick="login()">Login</button>
+</div>
+
+<!-- Bet Calculation Form (Hidden until logged in) -->
+<div id="calculator" class="calculator-container fade" style="display:none;">
+    <h2>Rumus Parlay</h2>
+
+    <!-- Bet Amount -->
+    <div class="bet">
+        <label for="betAmount">Jumlah Taruhan:</label>
+        <input type="number" id="betAmount" class="input-field" placeholder="Masukkan jumlah taruhan" required>
+    </div>
+
+    <!-- Table of Odds and Results (Vertikal) -->
+    <table class="input-table">
+        <thead>
+            <tr>
+                <th>Odds</th>
+                <th>Win/Lose</th>
+                <th>Actual Odds</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Repeat rows for each bet (up to 10) -->
+            <tr>
+                <td><input type="number" id="odds1" placeholder="Masukkan odds 1"></td>
+                <td><input type="text" id="result1" placeholder="W/WH/LH/L/D"></td>
+                <td><span id="actualOdds1"></span></td>
+            </tr>
+            <tr>
+                <td><input type="number" id="odds2" placeholder="Masukkan odds 2"></td>
+                <td><input type="text" id="result2" placeholder="W/WH/LH/L/D"></td>
+                <td><span id="actualOdds2"></span></td>
+            </tr>
+            <tr>
+                <td><input type="number" id="odds3" placeholder="Masukkan odds 3"></td>
+                <td><input type="text" id="result3" placeholder="W/WH/LH/L/D"></td>
+                <td><span id="actualOdds3"></span></td>
+            </tr>
+            <tr>
+                <td><input type="number" id="odds4" placeholder="Masukkan odds 4"></td>
+                <td><input type="text" id="result4" placeholder="W/WH/LH/L/D"></td>
+                <td><span id="actualOdds4"></span></td>
+            </tr>
+            <tr>
+                <td><input type="number" id="odds5" placeholder="Masukkan odds 5"></td>
+                <td><input type="text" id="result5" placeholder="W/WH/LH/L/D"></td>
+                <td><span id="actualOdds5"></span></td>
+            </tr>
+            <tr>
+                <td><input type="number" id="odds6" placeholder="Masukkan odds 6"></td>
+                <td><input type="text" id="result6" placeholder="W/WH/LH/L/D"></td>
+                <td><span id="actualOdds6"></span></td>
+            </tr>
+            <tr>
+                <td><input type="number" id="odds7" placeholder="Masukkan odds 7"></td>
+                <td><input type="text" id="result7" placeholder="W/WH/LH/L/D"></td>
+                <td><span id="actualOdds7"></span></td>
+            </tr>
+            <tr>
+                <td><input type="number" id="odds8" placeholder="Masukkan odds 8"></td>
+                <td><input type="text" id="result8" placeholder="W/WH/LH/L/D"></td>
+                <td><span id="actualOdds8"></span></td>
+            </tr>
+            <tr>
+                <td><input type="number" id="odds9" placeholder="Masukkan odds 9"></td>
+                <td><input type="text" id="result9" placeholder="W/WH/LH/L/D"></td>
+                <td><span id="actualOdds9"></span></td>
+            </tr>
+            <tr>
+                <td><input type="number" id="odds10" placeholder="Masukkan odds 10"></td>
+                <td><input type="text" id="result10" placeholder="W/WH/LH/L/D"></td>
+                <td><span id="actualOdds10"></span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Calculate Button -->
+    <div class="bet">
+        <button onclick="calculateParlay()">Hitung Parlay</button>
+    </div>
+
+    <!-- Results: Total Estimasi Odds, Total Actual Odds, Payout -->
+    <div class="result">
+        <h3>Hasil:</h3>
+        <p id="parlayResult"></p>
+        <p id="totalEstimasiOdds"></p>
+        <p id="totalActualOdds"></p>
+        <p id="totalPayout"></p>
+    </div>
+
+    <!-- Logout Button -->
+    <button onclick="logout()">Logout</button>
+</div>
+
+<script>
+    // Login Function
+    function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // Hardcoded login for simplicity
+        if (username === "admin" && password === "qq010101") {
+            localStorage.setItem("loggedIn", "true");
+            showCalculator();
+        } else {
+            alert("Salah tu coba tanya sama bang aldo");
+        }
+    }
+
+    // Logout Function
+    function logout() {
+        localStorage.removeItem("loggedIn");
+        window.location.reload();
+    }
+
+    // Show Calculator if logged in
+    function showCalculator() {
+        document.getElementById("loginForm").style.display = "none";
+        document.getElementById("calculator").style.display = "block";
+    }
+
+    // Check if already logged in
+    window.onload = function() {
+        if (localStorage.getItem("loggedIn") === "true") {
+            showCalculator();
+        }
+    }
+
+    // Parlay Calculation Logic
+    function calculateParlay() {
+        const betAmount = parseFloat(document.getElementById("betAmount").value);
+        const oddsArray = [];
+        const resultsArray = [];
+        const actualOddsArray = [];
+
+        // Retrieve Odds and Results
+        for (let i = 1; i <= 10; i++) {
+            const odds = parseFloat(document.getElementById("odds" + i).value);
+            const result = document.getElementById("result" + i).value.trim().toLowerCase();
+
+            // Validate only if odds are entered
+            if (!isNaN(odds) && (result === "w" || result === "wh" || result === "lh" || result === "d" || result === "l")) {
+                oddsArray.push(odds);
+                resultsArray.push(result);
+            }
+        }
+
+        // If no valid input, stop calculation
+        if (oddsArray.length === 0) {
+            alert("isi lah odds nya kontol.");
+            return;
+        }
+
+        let totalEstimasiOdds = 1;
+        let totalActualOdds = 1;
+        let totalWinAmount = 0;
+
+        // Calculate Actual Odds and Total Estimasi Odds
+        for (let i = 0; i < oddsArray.length; i++) {
+            let odds = oddsArray[i];
+            let result = resultsArray[i];
+            let actualOdds = odds;
+
+            // Estimasi Odds (before adjusting for result)
+            totalEstimasiOdds *= odds;
+
+            // Adjusting for result
+            if (result === "w") {
+                actualOdds = odds; // Win
+            } else if (result === "wh") {
+                actualOdds = ((odds - 1) / 2) + 1; // Half Win
+            } else if (result === "lh") {
+                actualOdds = 0.5; // Half Lose
+            } else if (result === "l" || result === "d") {
+                actualOdds = 1; // Lose or Draw
+            }
+
+            // Multiply total actual odds
+            totalActualOdds *= actualOdds;
+
+            // Save actual odds for display
+            document.getElementById("actualOdds" + (i + 1)).textContent = actualOdds > 0 ? actualOdds.toFixed(2) : '0';
+        }
+
+        // Calculate Total Payout
+        if (totalActualOdds > 0) {
+            totalWinAmount = betAmount * totalActualOdds;
+            document.getElementById("totalEstimasiOdds").textContent = `Total Estimasi Odds: ${totalEstimasiOdds.toFixed(2)}`;
+            document.getElementById("totalActualOdds").textContent = `Total Actual Odds:${totalActualOdds.toFixed(2)}`;
+            document.getElementById("totalPayout").textContent = `Total Estimasi Payout: Rp ${totalWinAmount.toLocaleString()}`;
+        } else {
+            document.getElementById("totalEstimasiOdds").textContent = `Total Estimasi Odds: ${totalEstimasiOdds.toFixed(2)}`;
+            document.getElementById("totalActualOdds").textContent = `Total Actual Odds: 0`;
+            document.getElementById("totalPayout").textContent = `Total Estimasi Payout: Rp 0`;
+        }
+    }
+</script>
+
+</body>
+</html>
