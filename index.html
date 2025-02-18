@@ -6,170 +6,173 @@
     <title>Parlay Calculator</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-        }
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the top */
+    height: 100%;
+    overflow: auto;
+    box-sizing: border-box;
+}
 
-        .container {
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 600px;
-            animation: fadeIn 1s ease-out;
-            box-sizing: border-box;
-        }
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+    animation: fadeIn 1s ease-out;
+}
 
-        h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 25px;
-            font-size: 24px;
-        }
+h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+}
 
-        .bet {
-            margin-bottom: 20px;
-        }
+.input-field {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s;
+}
 
-        .input-field {
-            width: 100%;
-            padding: 12px;
-            margin-top: 5px;
-            font-size: 16px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            box-sizing: border-box;
-            background-color: #f9f9f9;
-            transition: border-color 0.3s;
-        }
+button {
+    background-color: #00aaff;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: background-color 0.3s;
+}
 
-        .input-field:focus {
-            border-color: #00aaff;
-            outline: none;
-        }
+button:hover {
+    background-color: #0088cc;
+}
 
-        button {
-            background-color: #00aaff;
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-            width: 100%;
-            cursor: pointer;
-            margin-top: 25px;
-            transition: background-color 0.3s;
-        }
+.input-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    box-sizing: border-box;
+}
 
-        button:hover {
-            background-color: #0088cc;
-        }
+.input-table th, .input-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 16px;
+}
 
-        .input-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 25px;
-            box-sizing: border-box;
-        }
+.input-table input[type="number"], .input-table input[type="text"] {
+    width: 100%; /* Membuat input mengambil lebar penuh */
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    box-sizing: border-box;
+}
 
-        .input-table th, .input-table td {
-            padding: 12px;
-            border: 1px solid #ddd;
-            text-align: center;
-            font-size: 16px;
-        }
+.result {
+    margin-top: 25px;
+    text-align: center;
+}
 
-        .input-table th {
-            background-color: #f1f1f1;
-        }
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        .input-table input[type="number"], .input-table input[type="text"] {
-            width: 90%;
-            padding: 8px;
-            font-size: 14px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            text-align: center;
-            transition: border-color 0.3s;
-        }
+/* Media Queries for Responsiveness */
 
-        .input-table input[type="number"]:focus, .input-table input[type="text"]:focus {
-            border-color: #00aaff;
-        }
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+        height: auto;
+        overflow-y: scroll;
+    }
 
-        .result {
-            margin-top: 20px;
-            font-size: 18px;
-            text-align: center;
-            font-weight: bold;
-            color: #333;
-        }
+    .container {
+        padding: 20px;
+        width: 100%;
+        max-width: 100%;
+    }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    h2 {
+        font-size: 22px;
+    }
 
-        /* Media Queries for Responsiveness */
-        @media screen and (max-width: 768px) {
-            body {
-                height: auto;
-                padding: 20px;
-            }
+    .input-field {
+        font-size: 14px;
+    }
 
-            .container {
-                padding: 30px;
-                max-width: 100%;
-            }
+    button {
+        font-size: 14px;
+        padding: 12px;
+    }
 
-            h2 {
-                font-size: 20px;
-            }
+    .input-table th, .input-table td {
+        padding: 12px;
+        font-size: 14px;
+    }
 
-            .bet, .input-field {
-                width: 100%;
-            }
+    .input-table input[type="number"], .input-table input[type="text"] {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
 
-            button {
-                font-size: 14px;
-                padding: 15px;
-            }
+@media screen and (max-width: 480px) {
+    h2 {
+        font-size: 18px;
+    }
 
-            .input-table th, .input-table td {
-                padding: 15px;
-                font-size: 14px;
-            }
-        }
+    .input-field {
+        padding: 10px;
+        font-size: 14px;
+    }
 
-        @media screen and (max-width: 480px) {
-            h2 {
-                font-size: 18px;
-            }
+    button {
+        font-size: 14px;
+        padding: 12px;
+    }
 
-            .input-field {
-                padding: 10px;
-                font-size: 14px;
-            }
+    .input-table th, .input-table td {
+        padding: 10px;
+        font-size: 14px;
+    }
 
-            button {
-                font-size: 14px;
-                padding: 12px;
-            }
-        }
+    .input-table input[type="number"], .input-table input[type="text"] {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .result {
+        font-size: 14px;
+    }
+}
+
     </style>
 </head>
 <body>
