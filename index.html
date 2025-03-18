@@ -4,176 +4,174 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parlay Calculator</title>
-    <!-- Menambahkan favicon menggunakan gambar URL -->
-    <link rel="icon" href="https://i.pinimg.com/474x/b5/5d/5a/b55d5acbd25c6a96211ffa458d52d17b.jpg" type="image/jpg">
     <style>
         body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Align items to the top */
-    height: 100%;
-    overflow: auto;
-    box-sizing: border-box;
-}
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100%;
+            overflow: auto;
+            box-sizing: border-box;
+        }
 
-.container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
-    box-sizing: border-box;
-    animation: fadeIn 1s ease-out;
-}
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            box-sizing: border-box;
+            animation: fadeIn 1s ease-out;
+        }
 
-h2 {
-    text-align: center;
-    color: #333;
-    font-size: 24px;
-}
+        h2 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+        }
 
-.input-field {
-    width: 100%;
-    padding: 12px;
-    margin-top: 5px;
-    font-size: 16px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    box-sizing: border-box;
-    background-color: #f9f9f9;
-    transition: border-color 0.3s;
-}
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s;
+        }
 
-button {
-    background-color: #00aaff;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
-    width: 100%;
-    cursor: pointer;
-    margin-top: 25px;
-    transition: background-color 0.3s;
-}
+        button {
+            background-color: #00aaff;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: background-color 0.3s;
+        }
 
-button:hover {
-    background-color: #0088cc;
-}
+        button:hover {
+            background-color: #0088cc;
+        }
 
-.input-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 25px;
-    box-sizing: border-box;
-}
+        .input-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+            box-sizing: border-box;
+        }
 
-.input-table th, .input-table td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: center;
-    font-size: 16px;
-}
+        .input-table th, .input-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+            font-size: 16px;
+        }
 
-.input-table input[type="number"], .input-table input[type="text"] {
-    width: 100%; /* Membuat input mengambil lebar penuh */
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    text-align: center;
-    box-sizing: border-box;
-}
+        .input-table input[type="number"], .input-table input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            box-sizing: border-box;
+        }
 
-.result {
-    margin-top: 25px;
-    text-align: center;
-}
+        .result {
+            margin-top: 25px;
+            text-align: center;
+        }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-/* Media Queries for Responsiveness */
+        /* Media Queries for Responsiveness */
 
-@media screen and (max-width: 768px) {
-    body {
-        padding: 10px;
-        height: auto;
-        overflow-y: scroll;
-    }
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10px;
+                height: auto;
+                overflow-y: scroll;
+            }
 
-    .container {
-        padding: 20px;
-        width: 100%;
-        max-width: 100%;
-    }
+            .container {
+                padding: 20px;
+                width: 100%;
+                max-width: 100%;
+            }
 
-    h2 {
-        font-size: 22px;
-    }
+            h2 {
+                font-size: 22px;
+            }
 
-    .input-field {
-        font-size: 14px;
-    }
+            .input-field {
+                font-size: 14px;
+            }
 
-    button {
-        font-size: 14px;
-        padding: 12px;
-    }
+            button {
+                font-size: 14px;
+                padding: 12px;
+            }
 
-    .input-table th, .input-table td {
-        padding: 12px;
-        font-size: 14px;
-    }
+            .input-table th, .input-table td {
+                padding: 12px;
+                font-size: 14px;
+            }
 
-    .input-table input[type="number"], .input-table input[type="text"] {
-        font-size: 14px;
-        padding: 10px;
-    }
-}
+            .input-table input[type="number"], .input-table input[type="text"] {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
 
-@media screen and (max-width: 480px) {
-    h2 {
-        font-size: 18px;
-    }
+        @media screen and (max-width: 480px) {
+            h2 {
+                font-size: 18px;
+            }
 
-    .input-field {
-        padding: 10px;
-        font-size: 14px;
-    }
+            .input-field {
+                padding: 10px;
+                font-size: 14px;
+            }
 
-    button {
-        font-size: 14px;
-        padding: 12px;
-    }
+            button {
+                font-size: 14px;
+                padding: 12px;
+            }
 
-    .input-table th, .input-table td {
-        padding: 10px;
-        font-size: 14px;
-    }
+            .input-table th, .input-table td {
+                padding: 10px;
+                font-size: 14px;
+            }
 
-    .input-table input[type="number"], .input-table input[type="text"] {
-        padding: 10px;
-        font-size: 14px;
-    }
+            .input-table input[type="number"], .input-table input[type="text"] {
+                padding: 10px;
+                font-size: 14px;
+            }
 
-    .result {
-        font-size: 14px;
-    }
-}
+            .result {
+                font-size: 14px;
+            }
+        }
 
     </style>
 </head>
@@ -238,7 +236,13 @@ button:hover {
     </div>
 </div>
 
+<div id="sessionTimeoutMessage" style="display:none; text-align: center; padding: 10px; background-color: #ffcccc; color: red; font-weight: bold;">
+    Sesi Anda telah habis. Silakan login kembali.
+</div>
+
 <script>
+    let sessionTimeout;
+
     // Login Function
     function login() {
         const username = document.getElementById("username").value;
@@ -248,6 +252,7 @@ button:hover {
         if (username === "admin" && password === "qq010101") {
             localStorage.setItem("loggedIn", "true");
             showCalculator();
+            startSessionTimeout();
         } else {
             alert("Salah tu coba tanya sama bang aldo");
         }
@@ -256,6 +261,7 @@ button:hover {
     // Logout Function
     function logout() {
         localStorage.removeItem("loggedIn");
+        clearTimeout(sessionTimeout); // Clear session timeout on logout
         window.location.reload();
     }
 
@@ -263,12 +269,22 @@ button:hover {
     function showCalculator() {
         document.getElementById("loginForm").style.display = "none";
         document.getElementById("calculator").style.display = "block";
+        document.getElementById("sessionTimeoutMessage").style.display = "none";
+    }
+
+    // Session Timeout (1 minute)
+    function startSessionTimeout() {
+        sessionTimeout = setTimeout(() => {
+            alert("Sesi Anda telah habis. Silakan login kembali.");
+            logout(); // Logout after timeout
+        }, 900000); // 15 menit
     }
 
     // Check if already logged in
     window.onload = function() {
         if (localStorage.getItem("loggedIn") === "true") {
             showCalculator();
+            startSessionTimeout();
         }
     }
 
@@ -333,7 +349,7 @@ button:hover {
             totalWinAmount = betAmount * totalActualOdds;
             document.getElementById("totalEstimasiOdds").textContent = `Total Estimasi Odds: ${totalEstimasiOdds.toFixed(2)}`;
             document.getElementById("totalActualOdds").textContent = `Total Actual Odds:${totalActualOdds.toFixed(2)}`;
-            document.getElementById("totalPayout").textContent = `Total Estimasi Payout: Rp ${totalWinAmount.toLocaleString()}`;
+            document.getElementById("totalPayout").textContent = `Total Estimasi Payout: Rp ${new Intl.NumberFormat('id-ID').format(totalWinAmount)}`;
         } else {
             document.getElementById("totalEstimasiOdds").textContent = `Total Estimasi Odds: ${totalEstimasiOdds.toFixed(2)}`;
             document.getElementById("totalActualOdds").textContent = `Total Actual Odds: 0`;
